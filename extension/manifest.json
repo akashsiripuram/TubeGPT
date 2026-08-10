@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "TubeGPT",
+  "version": "1.0.0",
+  "description": "Ask questions about YouTube videos using AI and RAG.",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "TubeGPT"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/watch*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
