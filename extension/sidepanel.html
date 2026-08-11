@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>TubeGPT</title>
+
+    <link
+        rel="stylesheet"
+        href="sidepanel.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+
+        <!-- =========================================
+             HEADER
+        ========================================== -->
+
+        <header class="header">
+
+            <div class="brand">
+
+                <div class="logo">
+                    ▶
+                </div>
+
+                <div>
+
+                    <h1>
+                        TubeGPT
+                    </h1>
+
+                    <p>
+                        AI assistant for YouTube
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                <span>
+                    Ready
+                </span>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================================
+             CURRENT VIDEO
+        ========================================== -->
+
+        <section class="video-card">
+
+            <div class="video-icon">
+                ▶
+            </div>
+
+
+            <div class="video-info">
+
+                <span class="label">
+                    CURRENT VIDEO
+                </span>
+
+
+                <span id="videoStatus">
+                    Checking video...
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             INGEST
+        ========================================== -->
+
+        <section class="ingest-section">
+
+            <button
+                id="ingestBtn"
+                class="ingest-btn"
+            >
+
+                <span class="ingest-icon">
+                    ✦
+                </span>
+
+                <span>
+                    Analyze Video
+                </span>
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =========================================
+             QUESTION
+        ========================================== -->
+
+        <section class="question-section">
+
+            <label for="question">
+                Ask about this video
+            </label>
+
+
+            <textarea
+                id="question"
+                rows="4"
+                placeholder="Analyze the video first..."
+                disabled
+            ></textarea>
+
+
+            <div class="question-footer">
+
+                <span class="hint">
+                    Press Ctrl + Enter to ask
+                </span>
+
+
+                <button
+                    id="askBtn"
+                    disabled
+                >
+
+                    <span>
+                        Ask
+                    </span>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             LOADING
+        ========================================== -->
+
+        <div
+            id="loading"
+            class="loading hidden"
+        >
+
+            <div class="spinner"></div>
+
+
+            <span id="loadingText">
+                Processing...
+            </span>
+
+        </div>
+
+
+
+        <!-- =========================================
+             ANSWER
+        ========================================== -->
+
+        <section
+            id="answerSection"
+            class="answer-section hidden"
+        >
+
+            <div class="answer-header">
+
+                <span class="answer-icon">
+                    ✦
+                </span>
+
+                <span>
+                    TubeGPT
+                </span>
+
+            </div>
+
+
+            <div id="answer"></div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             FOOTER
+        ========================================== -->
+
+        <footer>
+
+            Powered by Gemini · LangChain · Chroma
+
+        </footer>
+
+
+    </div>
+
+
+    <script src="sidepanel.js"></script>
+
+</body>
+
+</html>

@@ -1,7 +1,10 @@
-youtube-transcript-api
-langchain-community
+fastapi
+uvicorn
 langchain-google-genai
-tiktoken
 python-dotenv
-faiss-cpu
-langchain-community
+youtube-transcript-api
+langchain-text-splitters
+langchain-chroma
+langchain-core
+chromadb
+langchain_community

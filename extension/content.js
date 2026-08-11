@@ -1,70 +1,67 @@
-document
-    .getElementById("askBtn")
-    .addEventListener("click", async () => {
+console.log("=================================");
+console.log("TubeGPT content.js loaded");
+console.log("Current URL:", window.location.href);
+console.log("=================================");
 
-        const question =
-            document.getElementById("question").value;
 
-        if (!question.trim()) {
-            return;
-        }
+let currentVideoId = null;
 
-        const answerElement =
-            document.getElementById("answer");
 
-        const loading =
-            document.getElementById("loading");
+function getVideoId() {
 
-        loading.style.display = "block";
-        answerElement.innerText = "";
+    const url =
+        new URL(window.location.href);
 
-        try {
+    return url.searchParams.get("v");
 
-            const tabs = await chrome.tabs.query({
-                active: true,
-                currentWindow: true
-            });
+}
 
-            const tab = tabs[0];
 
-            const videoUrl = tab.url;
+function checkVideoChange() {
 
-            if (!videoUrl.includes("youtube.com/watch")) {
-                throw new Error(
-                    "Please open a YouTube video first."
-                );
-            }
+    // Only work on YouTube watch pages
+    if (
+        !window.location.href.includes(
+            "youtube.com/watch"
+        )
+    ) {
+        return;
+    }
 
-            const response = await fetch(
-                "http://127.0.0.1:8000/ask",
-                {
-                    method: "POST",
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+    const videoId =
+        getVideoId();
 
-                    body: JSON.stringify({
-                        video_url: videoUrl,
-                        question: question
-                    })
-                }
-            );
 
-            const data = await response.json();
+    if (!videoId) {
+        return;
+    }
 
-            answerElement.innerText =
-                data.answer;
 
-        } catch (error) {
+    // Don't log the same video repeatedly
+    if (videoId === currentVideoId) {
+        return;
+    }
 
-            answerElement.innerText =
-                "Error: " + error.message;
 
-        } finally {
+    currentVideoId =
+        videoId;
 
-            loading.style.display = "none";
 
-        }
+    console.log(
+        "TubeGPT current video:",
+        videoId
+    );
 
-    });
+}
+
+
+// Run when script loads
+checkVideoChange();
+
+
+// YouTube is a SPA, so check for URL changes
+setInterval(
+    checkVideoChange,
+    1000
+);
